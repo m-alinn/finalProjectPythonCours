@@ -105,6 +105,8 @@ def main_superuser():
 
         while True:
             clear()
+            superUser.expirare_parola()
+            clear()
             print(35 * "=")
             print("Meniu Principal Super User".center(35))
             print(35 * "=", "\n1. Vizualizare\n2. Adaugare\n3. Modificare\n4. Iesire\n", 35 * "=")
@@ -139,6 +141,8 @@ if __name__ == "__main__":
         input_user = input("User: ")
         input_parola = input("Parola: ")
 
+        """Meniu dublu in functie de ce categorie de user se logheaza"""
+        # TODO: What if there are no users in the database?
         if input_user in [i['user'] for i in superUser_collection.find({}, {'_id': 0, 'user': 1})] and input_parola in \
                 [j['parola'] for j in superUser_collection.find({}, {'_id': 0, 'parola': 1})]:
 
@@ -153,9 +157,6 @@ if __name__ == "__main__":
             if incercare < 2:
                 incercare += 1
                 print("User sau parola incorecte. Va rugam reincercati!\nIncercari ramase: ", 3-incercare)
-                # print("Incercari ramase: ", 3-incercare)
             else:
                 print("Ati introdus user sau parola gresit de trei ori.\nLa revedere!")
                 break
-
-# TODO: implement the notification for changing the password after 30 days
