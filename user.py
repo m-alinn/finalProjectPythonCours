@@ -1,11 +1,9 @@
-from superUser import superUser
+from superUser import superUser, sleep
 from datetime import date
-from time import sleep
 
 
 class user(superUser):
 
-    # TODO: add extra attributes of the object
     def __init__(self, user, parola, data, departament):
         """Construtorul clasei User"""
         self.user = user
@@ -15,7 +13,6 @@ class user(superUser):
         # for i in kwargs:
         #     setattr(self, i, kwargs[i])
 
-    # TODO: add exceptions and verify if the user already exists
     @classmethod
     def adaugare_user(cls):
         categorie = superUser.alegere_user()
@@ -26,7 +23,6 @@ class user(superUser):
         db_item = {"user": input_user, "parola": parola, "data": data, "departament": departament}
         categorie.insert_one(db_item)
 
-    # TODO: beautify the output of the function
     @classmethod
     def vizualizare_user(cls):
         categorie = superUser.alegere_user()
@@ -38,7 +34,6 @@ class user(superUser):
             print(45 * "=")
         input("\nApasati orice tasta pentru a continua...")
 
-    # TODO: maybe 'editare_parola' and 'editare_departament' can be covered by one parameterized function
     @classmethod
     def editare_parola(cls):
         """Functia de editare a parolei user ului"""
@@ -69,7 +64,6 @@ class user(superUser):
             print("Departamentul nu a putut fi modificat!")
             sleep(5)
 
-    # TODO: add extra question if the user is sure that the object needs to be removed
     @classmethod
     def stergere_user(cls):
         """Functia de stergere a user ului"""
